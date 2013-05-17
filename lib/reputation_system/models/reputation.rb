@@ -37,7 +37,12 @@ module ReputationSystem
 
     def self.find_by_reputation_name_and_target(reputation_name, target)
       target_type = get_target_type_for_sti(target, reputation_name)
-      ReputationSystem::Reputation.find_by_reputation_name_and_target_id_and_target_type(reputation_name.to_s, target.id, target_type)
+      ReputationSystem::Reputation.
+                          where(
+                            :reputation_name => reputation_name.to_s,
+                            :target_id => target.id,
+                            :target_type => target_type
+                          ).first
     end
 
     # All external access to reputation should use this since they are created lazily.
