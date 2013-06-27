@@ -17,7 +17,7 @@
 module ReputationSystem
   class ReputationMessage < ActiveRecord::Base
     self.table_name = 'rs_reputation_messages'
-    belongs_to :sender, :polymorphic => true
+    belongs_to :sender, :polymorphic => true, touch: true
     belongs_to :receiver, :class_name => 'ReputationSystem::Reputation'
 
     # attr_accessible :weight, :sender, :receiver

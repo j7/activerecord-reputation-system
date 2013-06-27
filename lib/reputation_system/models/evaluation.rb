@@ -18,8 +18,8 @@ module ReputationSystem
   class Evaluation < ActiveRecord::Base
     self.table_name = 'rs_evaluations'
 
-    belongs_to :source, :polymorphic => true
-    belongs_to :target, :polymorphic => true
+    belongs_to :source, :polymorphic => true, touch: true
+    belongs_to :target, :polymorphic => true, touch: true
     has_one :sent_messages, :as => :sender, :class_name => 'ReputationSystem::ReputationMessage', :dependent => :destroy
 
     # attr_accessible :reputation_name, :value, :source, :source_id, :source_type, :target, :target_id, :target_type
